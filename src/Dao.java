@@ -3,19 +3,19 @@
  * @Author: Juan José González Giraldo
  * @Date: 2021-07-23 20:13:12
  * @Last Modified by: Juan José González Giraldo
- * @Last Modified time: 2021-07-23 20:15:33
+ * @Last Modified time: 2021-07-23 20:23:04
  */
 import java.util.List;
 
-/** Data access pattern basic methods */
+/** Data access object pattern basic methods */
 public interface Dao<T> {
   /**
-   * Returns the item associated with the serial
+   * Returns the item associated with the id
    *
-   * @param serial unique item identifier
+   * @param id unique item identifier
    * @return
    */
-  T consultar(String serial);
+  T consultar(int id);
 
   /**
    * Returns all the items

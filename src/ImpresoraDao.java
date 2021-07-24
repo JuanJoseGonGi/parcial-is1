@@ -1,48 +1,44 @@
+
+/*
+ * @Author: yeraldin
+ * @Date: 2021-07-23 20:49:22
+ * @Last Modified by: Juan José González Giraldo
+ * @Last Modified time: 2021-07-23 20:53:02
+ */
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 
 public class ImpresoraDao implements Dao<Impresora> {
-    
     private List<Impresora> impresoras = new ArrayList<>();
-    
-    public ImpresoraDao() {
-        impresoras.add(new Impresora());
-        impresoras.add(new Impresora());
-    }
-    
+
     @Override
-    public Optional<Impresora> consultar(String serial) {
-        return Optional.ofNullable(impresoras.consultar((String) serial));
+    public Impresora consultar(int id) {
+        return impresoras.get(id);
     }
-    
-    
+
     @Override
     public void guardar(Impresora impresora) {
-        ((List<Impresora>) impresora).add(impresora);
+        impresora.setId(impresoras.size());
+        impresoras.add(impresora);
     }
-    }
+
     @Override
     public List<Impresora> consultarTodos() {
         return impresoras;
-        
+
     }
 
     @Override
     public void actualizar(Impresora impresora, String[] params) {
-        impresora.setSerial(Objects.requireNonNull(
-          params[0], "el serial no puede ser  null"));
-        impresora.setMarca(Objects.requireNonNull(
-          params[1], "la marca no puede ser null"));
-        
-          impresoras.add(impresora);
+        impresora.setSerial(params[0]);
+        impresora.setMarca(params[1]);
+        impresora.setEscaner(Boolean.parseBoolean(params[2]));
+
+        impresoras.add(impresora);
     }
 
     @Override
     public void borrar(Impresora impresora) {
         impresoras.remove(impresora);
-        
     }
-
 }
